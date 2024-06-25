@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth.models import User
@@ -66,3 +66,13 @@ class UserLogoutView(LoginRequiredMixin, View):
         logout(request)
         messages.success(request, 'you logged out successfully', 'success')
         return redirect('home:home')
+
+
+class UserProfileView(LoginRequiredMixin, View):
+
+    def get(self, request, user_id):
+        user = get_object_or_404(User, pk=user_id)
+        return render(request, 'accounts/profile.html', {'user': user})
+
+    def post(self, request):
+        pass

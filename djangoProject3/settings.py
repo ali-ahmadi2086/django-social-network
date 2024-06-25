@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
-    "accounts.apps.AccountsConfig"
+    "accounts.apps.AccountsConfig",
+    'post.apps.PostConfig'
 ]
 
 MIDDLEWARE = [
@@ -127,5 +128,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    'accounts.authenticate.EmailBackend'
+    "accounts.authenticate.EmailBackend"
 ]
