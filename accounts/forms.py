@@ -22,17 +22,18 @@ class UserRegistrationForm(forms.Form):
         user = User.objects.filter(username=username).exists()
         if user:
             raise ValidationError('this username already exists')
-        return user
+        return username
 
     def clean_email(self):
         email = self.cleaned_data['email']
         user = User.objects.filter(email=email).exists()
         if user:
             raise ValidationError('this email already exists')
-        return user
+        return email
 
     def clean(self):
         cd = super().clean()
+
         p1 = cd.get('password1')
         p2 = cd.get('password2')
 
