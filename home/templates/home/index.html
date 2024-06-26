@@ -6,7 +6,7 @@
     <div class="card mt-5">
 
             {% for post in posts %}
-            	<a class="card-body" href="{% url 'post:post_detail' post.id post.slug %}">{{ post.body|truncatewords:8 }}</a>
+            	<a class="card-body" href="{{ post.get_absolute_url }}">{{ post.body|truncatewords:8 }}</a>
             {% endfor %}
 
     </div>
