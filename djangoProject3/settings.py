@@ -130,3 +130,18 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "accounts.authenticate.EmailBackend"
 ]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # ایمیل بک اند پیشفرض جنگو
+
+EMAIL_HOST = 'smtp.gmail.com' #ایمیل هاست گوگل وجیمیل
+
+EMAIL_HOST_USER = 'www.aliahmadiaaa0722@gmail.com' # ایمیلی اکانت سایت
+
+EMAIL_PORT = 587 #ایمیل پورت گوگل
+
+EMAIL_HOST_PASSWORD = 'cjkr nhnq cewz ftvx' #رمزی که از گوگل اکانت دریافت شده
+
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = 'stack website' #نام امضای سایت درج شود
