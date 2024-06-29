@@ -6,11 +6,13 @@ from django.contrib import messages
 from .forms import PostCreateUpdateForm
 from django.utils.text import slugify
 
+
 class PostDetailView(View):
 
     def get(self, request, post_id, post_slug):
         post = get_object_or_404(Post, pk=post_id, slug=post_slug)
-        return render(request, 'post/detail.html', {'post': post})
+        comments = post.pcomments.filter(is_replay=False)
+        return render(request, 'post/detail.html', {'post': post, 'comments':comments})
 
 
 class PostDeleteView(LoginRequiredMixin, View):
