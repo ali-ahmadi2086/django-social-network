@@ -7,10 +7,22 @@
     	<a href="{% url 'post:post_update' post.id %}" class="btn btn-info mb-3">Update</a><br>
     {% endif %}
 
+
 	<a href="{% url 'accounts:user_profile' post.user.id %}">{{ post.user.username }}</a>
     <small>{{ post.updated|date:"Y-M" }}</small>
     <p>{{ post.body }}</p>
     <hr>
+
+    {% if request.user.is_authenticated %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Sent">
+        </form>
+    {% else %}
+        <p class="alert alert-danger" >Only logged in users can comment.</p>
+    {% endif %}
+
     <p>{{ comments.count }} comments</p>
     {% for comment in comments %}
     	<div class="card bg-dark text-white">
