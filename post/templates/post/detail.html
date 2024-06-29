@@ -18,17 +18,30 @@
             {% csrf_token %}
             {{ form }}
             <input type="submit" value="Sent">
-        </form>
+        </form><br>
     {% else %}
         <p class="alert alert-danger" >Only logged in users can comment.</p>
     {% endif %}
 
-    <p>{{ comments.count }} comments</p>
+
     {% for comment in comments %}
     	<div class="card bg-dark text-white">
             <p class="card-header">{{ comment.user }}  |  {{ comment.created | timesince}}</p>
             <p class="card-body">{{ comment.body }}</p>
-        </div>
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'post:add_reply' post.id comment.id %}" method="post" class="col-md-4" style="display: none">
+                {% csrf_token %}
+                {{ reply_form }}
+                <input type="submit" value="Send">
+            </form>
+        {% endif %}
+
+        {% with replies=comment.rcomments.all %}
+        {% for reply in replies  %}
+            <p class="bg-primary p-3 m-2" >{{ reply.user }} <br> {{ reply.body }}</p>
+        {% endfor %}
+        {% endwith %}
+        </div><br>
         {% empty %}
             <p class="bg-dark text-white">No comments yet!</p>
     {% endfor %}
