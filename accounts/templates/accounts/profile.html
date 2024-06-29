@@ -7,6 +7,12 @@
         <a class="btn btn-info mb-5" href="{% url 'post:post_create' %}">Create</a><br>
     {% endif %}
 
+    {% if request.user.id != user.id and not is_following %}
+        <a class="btn btn-primary mb-4"  href="{% url 'accounts:user_follow' user.id %}">Follow</a><br>
+    {% elif request.user != user.id and is_following %}
+        <a class="btn btn-primary mb-4"  href="{% url 'accounts:user_unfollow' user.id %}">UnFollow</a><br>
+    {% endif %}
+
     {% for post in posts %}
         <a href="{{ post.get_absolute_url }}">{{ post.body|truncatewords:8 }}</a><br><br>
     {% endfor %}
