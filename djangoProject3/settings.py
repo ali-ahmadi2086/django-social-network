@@ -145,3 +145,4 @@ EMAIL_HOST_PASSWORD = 'cjkr nhnq cewz ftvx' #رمزی که از گوگل اکا�
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = 'stack website' #نام امضای سایت درج شود
+
